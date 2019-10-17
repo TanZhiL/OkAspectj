@@ -30,10 +30,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     annotationProcessor project(path: ':lib_compiler')
-
-    implementation 'com.google.guava:guava:28.1-android'
-    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    implementation 'org.aspectj:aspectjrt:1.8.14'
     implementation project(path: ':lib_aspectj')
 
 }

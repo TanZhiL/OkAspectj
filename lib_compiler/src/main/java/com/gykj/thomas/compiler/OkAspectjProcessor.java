@@ -1,6 +1,6 @@
 package com.gykj.thomas.compiler;
 
-import com.gykj.thomas.aspectj.AspectjHelper;
+import com.gykj.thomas.aspectj.OkAspectjHelper;
 import com.gykj.thomas.aspectj.OkAspectj;
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.JavaFile;
@@ -51,12 +51,7 @@ public class OkAspectjProcessor extends AbstractProcessor {
         annotationTypes.add(OkAspectj.class.getCanonicalName());
         return annotationTypes;
     }
-/*
-*
-*   MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        NeedLogin annotation = methodSignature.getMethod().getAnnotation(NeedLogin.class);
 
-* */
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
@@ -83,7 +78,7 @@ public class OkAspectjProcessor extends AbstractProcessor {
                             , MethodSignature.class,IllegalStateException.class)
                     .addStatement("MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();")
                     .addStatement(classElement.getSimpleName()+" annotation = methodSignature.getMethod().getAnnotation("+classElement.getSimpleName()+".class);")
-                    .addStatement("$T.notifyHandler("+classElement.getSimpleName()+".class,joinPoint)", AspectjHelper.class)
+                    .addStatement("$T.notifyHandler("+classElement.getSimpleName()+".class,joinPoint)", OkAspectjHelper.class)
                     .build();
 
             TypeSpec OkAspectj = TypeSpec.classBuilder(classElement.getSimpleName().toString() + "_Aspectj")
