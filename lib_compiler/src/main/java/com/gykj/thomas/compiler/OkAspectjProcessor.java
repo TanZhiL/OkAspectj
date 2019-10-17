@@ -31,7 +31,7 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
-public class TProcessor extends AbstractProcessor {
+public class OkAspectjProcessor extends AbstractProcessor {
     private Filer mFiler;
     private Elements mElementUtils;
     private Messager mMessager;

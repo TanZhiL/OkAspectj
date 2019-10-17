@@ -1,4 +1,4 @@
-package com.gykj.thomas.simple.aop;
+package com.gykj.thomas.okaspectj.aop;
 
 import com.gykj.thomas.aspectj.OkAspectj;
 

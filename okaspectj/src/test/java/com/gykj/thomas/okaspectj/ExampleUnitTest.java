@@ -1,4 +1,4 @@
-package com.gykj.thomas.simple;
+package com.gykj.thomas.okaspectj;
 
 import org.junit.Test;
 

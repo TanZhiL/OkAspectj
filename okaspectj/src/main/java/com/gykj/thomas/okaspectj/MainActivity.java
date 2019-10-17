@@ -1,4 +1,4 @@
-package com.gykj.thomas.simple;
+package com.gykj.thomas.okaspectj;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.gykj.thomas.aspectj.AspectjHelper;
 import com.gykj.thomas.aspectj.PointHandler;
-import com.gykj.thomas.simple.aop.NeedLogin;
+import com.gykj.thomas.okaspectj.aop.NeedLogin;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;

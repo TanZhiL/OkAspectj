@@ -1,4 +1,4 @@
-package com.gykj.thomas.simple;
+package com.gykj.thomas.okaspectj;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

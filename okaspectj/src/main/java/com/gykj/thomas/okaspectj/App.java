@@ -1,9 +1,9 @@
-package com.gykj.thomas.simple;
+package com.gykj.thomas.okaspectj;
 
 import android.app.Application;
 import android.util.Log;
 
-import com.gykj.thomas.simple.aop.NeedLogin;
+import com.gykj.thomas.okaspectj.aop.NeedLogin;
 import com.gykj.thomas.aspectj.AspectjHelper;
 import com.gykj.thomas.aspectj.PointHandler;
 
