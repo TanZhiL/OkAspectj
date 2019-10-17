@@ -1,1 +1,1 @@
-include ':okaspectj', ':lib_compiler', ':lib_aspectj'
+include ':app', ':lib_compiler', ':lib_aspectj'
