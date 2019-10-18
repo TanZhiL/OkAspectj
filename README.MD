@@ -26,7 +26,7 @@
     }
 }
 ```
-2.app.gradle 添加
+2.app.gradle 添加(注意每个需要生成切面的文件的组件都需要添加annotationProcessor)
 ```java
 dependencies {
      implementation 'org.aspectj:aspectjrt:1.8.14'
@@ -186,6 +186,7 @@ public class App extends Application {
 }
 ```
 4.配置完成,可以在handlePoint(Class clazz, ProceedingJoinPoint joinPoint)中自由发挥你的骚操作了!
+5.也可自己编写切面文件,然后通过调用OkAspectjHelper.notifyHandler(Class clazz,ProceedingJoinPoint joinPoint),发送切点信息进行统一处理.
 
 
 ### 致谢
