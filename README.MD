@@ -29,6 +29,7 @@
 2.app.gradle 添加
 ```java
 dependencies {
+     implementation 'org.aspectj:aspectjrt:1.8.14'
      implementation 'com.github.TanZhiL:OkAspectjAnnotation:1.0.4'
      annotationProcessor 'com.github.TanZhiL:OkAspectjCompiler:1.0.4'
 }
