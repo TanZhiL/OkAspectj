@@ -1,5 +1,5 @@
 ﻿### 有人想要Android面向切面编程,今天他来了!😜,轻松完成各种骚操作!登录状态拦截,日志拦截,权限拦截,轻松搞定!
-
+[![](https://jitpack.io/v/TanZhiL/OkAspectj.svg)](https://jitpack.io/#TanZhiL/OkAspectj)
 ### 更新日志：
 ###### v1.02  2019-10.17
 * 第一次发布
@@ -30,8 +30,8 @@
 ```java
 dependencies {
      implementation 'org.aspectj:aspectjrt:1.8.14'
-     implementation 'com.github.TanZhiL:OkAspectjAnnotation:1.0.4'
-     annotationProcessor 'com.github.TanZhiL:OkAspectjCompiler:1.0.4'
+   implementation 'com.github.TanZhiL.OkAspectj:okaspectj:1.0.6'
+    annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:1.0.6'
 }
 /*******************独立运行时**********************************/
 import org.aspectj.bridge.IMessage
@@ -166,7 +166,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        OkAspectjHelper.setmHandler(new PointHandler() {
+        OkAspectjHelper.init(new PointHandler() {
             @Override
             public void handlePoint(Class clazz, ProceedingJoinPoint joinPoint) {
                      Log.d(TAG, "handlePoint() called with: clazz = [" + clazz + "]");
@@ -201,6 +201,8 @@ public class App extends Application {
 ### 开源项目
 * 快速切面编程开源库 https://github.com/TanZhiL/OkAspectj
 * 高仿喜马拉雅听Android客户端 https://github.com/TanZhiL/Zhumulangma
+* 骨架屏弹性块 https://github.com/TanZhiL/SkeletonBlock
+* RxPersistence是基于面向对象设计的快速持久化框架 https://github.com/TanZhiL/RxPersistence
 ### License
 ```
 Copyright (C)  tanzhilong OkAspectjFramework Open Source Project
