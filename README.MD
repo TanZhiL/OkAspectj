@@ -30,8 +30,8 @@
 ```java
 dependencies {
      implementation 'org.aspectj:aspectjrt:1.8.14'
-   implementation 'com.github.TanZhiL.OkAspectj:okaspectj:1.0.6'
-    annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:1.0.6'
+   implementation 'com.github.TanZhiL.OkAspectj:okaspectj:1.0.7'
+    annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:1.0.7'
 }
 /*******************独立运行时**********************************/
 import org.aspectj.bridge.IMessage
