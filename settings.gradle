@@ -1,1 +1,2 @@
-include ':app', ':lib_compiler', ':lib_aspectj'
+include ':app', ':okaspectj-annotation', ':okaspectj', ':okaspectj-compiler'
+rootProject.name='OkAspectj'
