@@ -26,12 +26,12 @@
     }
 }
 ```
-2.app.gradle 添加
+2.app.gradle 添加(注意每个需要生成切面的文件的组件都需要添加annotationProcessor)
 ```java
 dependencies {
      implementation 'org.aspectj:aspectjrt:1.8.14'
-     implementation 'com.github.TanZhiL:OkAspectjAnnotation:1.0.2'
-     annotationProcessor 'com.github.TanZhiL:OkAspectjCompiler:1.0.2'
+     implementation 'com.github.TanZhiL:OkAspectjAnnotation:1.0.4'
+     annotationProcessor 'com.github.TanZhiL:OkAspectjCompiler:1.0.4'
 }
 /*******************独立运行时**********************************/
 import org.aspectj.bridge.IMessage
@@ -186,7 +186,9 @@ public class App extends Application {
 }
 ```
 4.配置完成,可以在handlePoint(Class clazz, ProceedingJoinPoint joinPoint)中自由发挥你的骚操作了!
+5.也可自己编写切面文件,然后通过调用OkAspectjHelper.notifyHandler(Class clazz,ProceedingJoinPoint joinPoint),发送切点信息进行统一处理.
 
+### 配置出错的请参考 高仿喜马拉雅听Android客户端 https://github.com/TanZhiL/Zhumulangma
 
 ### 致谢
 * 感谢所有开源库的大佬
