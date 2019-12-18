@@ -1,6 +1,6 @@
 ﻿### 有人想要Android面向切面编程,今天他来了!😜,轻松完成各种骚操作!登录状态拦截,日志拦截,权限拦截,轻松搞定!
 
-### 目前发现Gson v2.8.6版与aspectjrt库冲突,导致编译时织入失败,建议使用gson v2.8.5版本
+### !!!目前发现Gson v2.8.6版与aspectjrt库冲突,导致编译时织入失败,建议使用gson v2.8.5版本!!!
 
 [![](https://jitpack.io/v/TanZhiL/OkAspectj.svg)](https://jitpack.io/#TanZhiL/OkAspectj)
 ### 更新日志：
