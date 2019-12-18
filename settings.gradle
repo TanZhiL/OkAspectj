@@ -1,0 +1,2 @@
+include ':app', ':okaspectj-annotation', ':okaspectj', ':okaspectj-compiler'
+rootProject.name='OkAspectj'
