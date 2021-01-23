@@ -38,7 +38,6 @@ dependencies {
     annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:1.0.7'
 }
 /*******************独立运行时**********************************/
-import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
@@ -57,7 +56,6 @@ project.android.applicationVariants.all { variant ->
 }
 /***********************END****************************/
 /*******************作为组件时**********************************/
-import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
