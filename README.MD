@@ -1,8 +1,9 @@
 ﻿### 有人想要Android面向切面编程,今天他来了!😜,轻松完成各种骚操作!登录状态拦截,日志拦截,权限拦截,轻松搞定!
 
-### !!!目前发现Gson v2.8.6版与aspectjrt库冲突,导致编译时织入失败,建议使用gson v2.8.5版本!!!
+## !!!目前发现Gson v2.8.6版与aspectjrt库冲突,导致编译时织入失败,建议使用gson v2.8.5版本!!!
 
 [![](https://jitpack.io/v/TanZhiL/OkAspectj.svg)](https://jitpack.io/#TanZhiL/OkAspectj)
+
 ### 更新日志：
 ###### v1.02  2019-10.17
 * 第一次发布
@@ -11,7 +12,7 @@
  - 拦截规则自定义
  - 无需手动编写切面代码,APT自动生成切面文件
  - 支持组件化
- 
+
 
 ## Installation：
 1.project.gradle 添加(同步完成后再进行下一步!!!)
@@ -42,9 +43,6 @@ import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
 project.android.applicationVariants.all { variant ->
-    if (!variant.buildType.isDebuggable()) {
-        return;
-    }
     JavaCompile javaCompile = variant.javaCompile
     javaCompile.doLast {
         String[] args = ["-showWeaveInfo",
@@ -54,32 +52,27 @@ project.android.applicationVariants.all { variant ->
                          "-d", javaCompile.destinationDir.toString(),
                          "-classpath", javaCompile.classpath.asPath,
                          "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler);
+        new Main().run(args, new MessageHandler(true))
     }
 }
 /***********************END****************************/
 /*******************作为组件时**********************************/
-import com.android.build.gradle.LibraryPlugin
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
 android.libraryVariants.all { variant ->
-    LibraryPlugin plugin = project.plugins.getPlugin(LibraryPlugin)
     JavaCompile javaCompile = variant.javaCompile
     javaCompile.doLast {
         String[] args = ["-showWeaveInfo",
-                         "-1.5",
+                         "-1.8",
                          "-inpath", javaCompile.destinationDir.toString(),
                          "-aspectpath", javaCompile.classpath.asPath,
                          "-d", javaCompile.destinationDir.toString(),
                          "-classpath", javaCompile.classpath.asPath,
-                         "-bootclasspath", plugin.project.android.bootClasspath.join(
+                         "-bootclasspath", project.android.bootClasspath.join(
                 File.pathSeparator)]
-
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler)
+        new Main().run(args, new MessageHandler(true))
     }
 }
 
