@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+}
+apply plugin: 'groovy'
+
+apply plugin: 'maven'
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+dependencies {
+
+    implementation 'org.aspectj:aspectjrt:1.8.14'
+    implementation 'org.aspectj:aspectjtools:1.8.9'
+    implementation gradleApi()
+    implementation 'com.android.tools.build:gradle:3.5.3'
+    implementation localGroovy()
+
+}
+
+
+uploadArchives {
+
+    repositories {
+
+        mavenDeployer {
+
+            repository(url: uri('../repos'))
+// 唯一标识
+            pom.groupId = "com.xtc.thomas.plugin"
+            // 项目名称
+            pom.artifactId = "okaspectj-plugin"
+            // 版本号
+            pom.version = "1.0.0"
+        }
+    }
+}

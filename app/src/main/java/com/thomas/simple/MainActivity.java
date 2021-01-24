@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         OkAspectjHelper.init(new PointHandler() {
             @Override
-            public void handlePoint(Class clazz, ProceedingJoinPoint joinPoint) {
+            public void onHandlePoint(Class clazz, ProceedingJoinPoint joinPoint) {
                 Log.d(TAG, "handlePoint() called with: clazz = [" + clazz + "], joinPoint = [" + joinPoint + "]");
             }
         });

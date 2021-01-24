@@ -21,6 +21,6 @@ public class OkAspectjHelper {
 
 
     public static void notifyHandler(Class clazz,ProceedingJoinPoint joinPoint){
-            mHandler.handlePoint(clazz,joinPoint);
+            mHandler.onHandlePoint(clazz,joinPoint);
     }
 }

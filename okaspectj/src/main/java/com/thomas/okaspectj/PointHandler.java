@@ -17,5 +17,5 @@ public interface PointHandler {
     * @param clazz 当前触发的注解
     * @param joinPoint 切点,joinPoint.proceed();放过
     */
-   void handlePoint(Class clazz, ProceedingJoinPoint joinPoint);
+   void onHandlePoint(Class clazz, ProceedingJoinPoint joinPoint);
 }
