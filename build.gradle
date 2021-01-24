@@ -4,17 +4,18 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url "https://maven.google.com" }
-        mavenCentral()
+        maven {//本地Maven仓库地址
+            url uri('E:\\Project\\OkAspectj\\repos')
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
         classpath 'org.aspectj:aspectjtools:1.8.14'
-        classpath 'org.aspectj:aspectjweaver:1.8.14'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.novoda:bintray-release:0.3.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath 'com.xtc.thomas.plugin:okaspectj-plugin:1.0.0'
     }
 }
 

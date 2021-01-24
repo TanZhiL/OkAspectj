@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-import org.aspectj.bridge.IMessage
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
+apply plugin: 'com.xtc.thomas.okaspectj'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -32,22 +30,4 @@ dependencies {
     implementation 'org.aspectj:aspectjrt:1.8.14'
     annotationProcessor  project(path: ':okaspectj-compiler')
     implementation project(path: ':okaspectj')
-}
-
-project.android.applicationVariants.all { variant ->
-    if (!variant.buildType.isDebuggable()) {
-        return;
-    }
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = ["-showWeaveInfo",
-                         "-1.8",
-                         "-inpath", javaCompile.destinationDir.toString(),
-                         "-aspectpath", javaCompile.classpath.asPath,
-                         "-d", javaCompile.destinationDir.toString(),
-                         "-classpath", javaCompile.classpath.asPath,
-                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler);
-    }
 }
