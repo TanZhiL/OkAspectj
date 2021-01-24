@@ -15,7 +15,7 @@
 
 
 ## Installation：
-1.project.gradle 添加(同步完成后再进行下一步!!!)
+1.project.gradle 
 ```java
     buildscript {
     repositories {
@@ -25,56 +25,22 @@
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'org.aspectj:aspectjtools:1.8.9'
-        classpath 'org.aspectj:aspectjweaver:1.8.9'
+      
+        classpath 'org.aspectj:aspectjtools:1.9.6'
+        classpath 'com.github.TanZhiL.OkAspectj:okaspectj-plugin:1.1.2'
     }
 }
 ```
 2.app.gradle 添加(注意每个需要生成切面的文件的组件都需要添加annotationProcessor)
 ```java
+
+apply plugin: 'com.xtc.thomas.okaspectj'
+
 dependencies {
-     implementation 'org.aspectj:aspectjrt:1.8.14'
-   implementation 'com.github.TanZhiL.OkAspectj:okaspectj:1.0.7'
-    annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:1.0.7'
+     implementation 'org.aspectj:aspectjrt:1.9.6'
+     implementation 'com.github.TanZhiL.OkAspectj:okaspectj:1.1.2'
+     annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:1.1.2'
 }
-/*******************独立运行时**********************************/
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
-
-project.android.applicationVariants.all { variant ->
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = ["-showWeaveInfo",
-                         "-1.8",
-                         "-inpath", javaCompile.destinationDir.toString(),
-                         "-aspectpath", javaCompile.classpath.asPath,
-                         "-d", javaCompile.destinationDir.toString(),
-                         "-classpath", javaCompile.classpath.asPath,
-                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
-        new Main().run(args, new MessageHandler(true))
-    }
-}
-/***********************END****************************/
-/*******************作为组件时**********************************/
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
-
-android.libraryVariants.all { variant ->
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = ["-showWeaveInfo",
-                         "-1.8",
-                         "-inpath", javaCompile.destinationDir.toString(),
-                         "-aspectpath", javaCompile.classpath.asPath,
-                         "-d", javaCompile.destinationDir.toString(),
-                         "-classpath", javaCompile.classpath.asPath,
-                         "-bootclasspath", project.android.bootClasspath.join(
-                File.pathSeparator)]
-        new Main().run(args, new MessageHandler(true))
-    }
-}
-
-/***********************END****************************/
 ```
 ## Usage：
 1. 在自己想要拦截的注解之上添加 @OkAspectj注解
@@ -119,7 +85,7 @@ public class App extends Application {
         super.onCreate();
         OkAspectjHelper.init(new PointHandler() {
             @Override
-            public void handlePoint(Class clazz, ProceedingJoinPoint joinPoint) {
+            public void onHandlePoint(Class clazz, ProceedingJoinPoint joinPoint) {
                      Log.d(TAG, "handlePoint() called with: clazz = [" + clazz + "]");
                 if(clazz==NeedLogin.class){
                     MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
@@ -136,7 +102,7 @@ public class App extends Application {
     }
 }
 ```
-4.配置完成,可以在handlePoint(Class clazz, ProceedingJoinPoint joinPoint)中自由发挥你的骚操作了!
+4.配置完成,可以在onHandlePoint(Class clazz, ProceedingJoinPoint joinPoint)中自由发挥你的骚操作了!
 5.也可自己编写切面文件,然后通过调用OkAspectjHelper.notifyHandler(Class clazz,ProceedingJoinPoint joinPoint),发送切点信息进行统一处理.
 
 ### 配置出错的请参考 高仿喜马拉雅听Android客户端 https://github.com/TanZhiL/Zhumulangma
