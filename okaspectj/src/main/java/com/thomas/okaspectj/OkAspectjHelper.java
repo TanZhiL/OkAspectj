@@ -10,9 +10,9 @@ import org.aspectj.lang.ProceedingJoinPoint;
  */
 public class OkAspectjHelper {
 
-    private static PointHandler mHandler;
+    private volatile static IPointHandler mHandler;
 
-    public static void init(PointHandler mHandler) {
+    public synchronized static void init(IPointHandler mHandler) {
         if(null==mHandler){
             throw new IllegalArgumentException("mHandler can not be null");
         }
@@ -20,7 +20,7 @@ public class OkAspectjHelper {
     }
 
 
-    public static void notifyHandler(Class clazz,ProceedingJoinPoint joinPoint){
+    public synchronized static void notifyHandler(Class clazz,ProceedingJoinPoint joinPoint){
             mHandler.onHandlePoint(clazz,joinPoint);
     }
 }

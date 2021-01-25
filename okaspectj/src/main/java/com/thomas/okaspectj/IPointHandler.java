@@ -11,7 +11,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
  * Email: 1071931588@qq.com<br/>
  * Description:
  */
-public interface PointHandler {
+public interface IPointHandler {
    /**
     * 当进入切面时回调
     * @param clazz 当前触发的注解

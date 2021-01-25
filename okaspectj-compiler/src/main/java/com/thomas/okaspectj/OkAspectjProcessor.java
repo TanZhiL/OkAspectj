@@ -54,9 +54,15 @@ public class OkAspectjProcessor extends AbstractProcessor {
         for (Element element : okAspectjElements) {
             TypeElement classElement = (TypeElement) element;
             PackageElement packageElement = (PackageElement) element.getEnclosingElement();
-
-            AnnotationSpec pointcut = AnnotationSpec.builder(ClassName.get("org.aspectj.lang.annotation","Pointcut"))
-                    .addMember("value", "\"execution(@" + classElement.getQualifiedName() + " * *(..))\"").build();
+            AnnotationSpec.Builder pointcutBuilder = AnnotationSpec.builder(ClassName.get("org.aspectj.lang.annotation", "Pointcut"));
+            OkAspectj annotation = element.getAnnotation(OkAspectj.class);
+            String value = annotation.value();
+            if (value.length() != 0) {
+                pointcutBuilder.addMember("value","\""+ value +"\"");
+            } else {
+                pointcutBuilder.addMember("value", "\"execution(@" + classElement.getQualifiedName() + " * *(..))\"").build();
+            }
+            AnnotationSpec pointcut = pointcutBuilder.build();
             MethodSpec pointcutMethod = MethodSpec.methodBuilder("pointcut" + classElement.getSimpleName())
                     .addModifiers(Modifier.PUBLIC)
                     .returns(void.class)
