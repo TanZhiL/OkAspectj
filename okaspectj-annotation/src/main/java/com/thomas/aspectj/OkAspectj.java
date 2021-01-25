@@ -14,4 +14,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.ANNOTATION_TYPE)
-public @interface OkAspectj {}
+public @interface OkAspectj {
+  String value() default "";
+}
