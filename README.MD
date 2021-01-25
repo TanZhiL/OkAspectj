@@ -12,7 +12,7 @@
  - 支持组件化
 
 
-## Installation：
+## Installation：[![](https://jitpack.io/v/TanZhiL/OkAspectj.svg)](https://jitpack.io/#TanZhiL/OkAspectj)
 1.project.gradle 
 ```java
     buildscript {
@@ -25,7 +25,7 @@
         classpath 'com.android.tools.build:gradle:3.2.1'
       
         classpath 'org.aspectj:aspectjtools:1.9.6'
-        classpath 'com.github.TanZhiL.OkAspectj:okaspectj-plugin:1.1.2'
+        classpath 'com.github.TanZhiL.OkAspectj:okaspectj-plugin:+'
     }
 }
 ```
@@ -36,8 +36,8 @@ apply plugin: 'com.xtc.thomas.okaspectj'
 
 dependencies {
      implementation 'org.aspectj:aspectjrt:1.9.6'
-     implementation 'com.github.TanZhiL.OkAspectj:okaspectj:1.1.2'
-     annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:1.1.2'
+     implementation 'com.github.TanZhiL.OkAspectj:okaspectj:+'
+     annotationProcessor 'com.github.TanZhiL.OkAspectj:okaspectj-compiler:+'
 }
 ```
 ## Usage：
@@ -102,6 +102,28 @@ public class App extends Application {
 ```
 4.配置完成,可以在onHandlePoint(Class clazz, ProceedingJoinPoint joinPoint)中自由发挥你的骚操作了!
 5.也可自己编写切面文件,然后通过调用OkAspectjHelper.notifyHandler(Class clazz,ProceedingJoinPoint joinPoint),发送切点信息进行统一处理.
+
+6.拦截系统方法请参考以下案例.
+
+## 经典案例:
+
+1.点击事件
+
+```java
+@OkAspectj("execution(* android.view.View.OnClickListener.onClick(..))")
+@Target(ElementType.METHOD)
+public @interface TestClick {
+}
+```
+
+2.生命周期
+
+```java
+@OkAspectj("execution(* android.app.Activity.on**(..))")
+@Target(ElementType.METHOD)
+public @interface TestLifeCycle {
+}
+```
 
 ### 配置出错的请参考 高仿喜马拉雅听Android客户端 https://github.com/TanZhiL/Zhumulangma
 
